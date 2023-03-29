@@ -8,7 +8,7 @@ import (
 
 func TestPool(t *testing.T) {
 	bufPool := sync.NewPool(func() *[]byte {
-		buf := make([]byte, 512*1024)
+		buf := make([]byte, 1024)
 		return &buf
 	})
 	buf1 := bufPool.Get()
