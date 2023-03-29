@@ -16,8 +16,6 @@ func TestPollWhile(t *testing.T) {
 }
 
 func testPollWhile(t *testing.T, expectErr bool) {
-	t.Helper()
-
 	i := 0
 	nums := make([]int, 0, 5)
 	expected := []int{1, 2, 3, 4, 5}
