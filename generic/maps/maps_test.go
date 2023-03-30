@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/playgroundgo/genlib/functional/maps"
+	"github.com/playgroundgo/genlib/generic/maps"
 )
 
 func TestHasKey(t *testing.T) {

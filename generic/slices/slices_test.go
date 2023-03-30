@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	gerrors "github.com/playgroundgo/genlib/errors"
-	"github.com/playgroundgo/genlib/functional/slices"
+	"github.com/playgroundgo/genlib/generic/slices"
 )
 
 func TestAny(t *testing.T) {
