@@ -10,21 +10,20 @@ type Pool[T any] struct {
 }
 
 // NewPool creates a new pool.
-func NewPool[T any](newFn func() *T) *Pool[T] {
-	pool := &Pool[T]{
+func NewPool[T any](newFn func() T) *Pool[T] {
+	return &Pool[T]{
 		syncPool: sync.Pool{
 			New: func() any { return newFn() },
 		},
 	}
-	return pool
 }
 
 // Get returns an item from the pool.
-func (p *Pool[T]) Get() *T {
-	return p.syncPool.Get().(*T)
+func (p *Pool[T]) Get() T {
+	return p.syncPool.Get().(T)
 }
 
 // Put adds an item to the pool.
-func (p *Pool[T]) Put(value *T) {
+func (p *Pool[T]) Put(value T) {
 	p.syncPool.Put(value)
 }

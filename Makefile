@@ -11,6 +11,10 @@ coverage:
 	go test -covermode=atomic -coverprofile=cover.out ./...
 	go tool cover -html=ccover.out -o cover.html
 
+.PHONY: fmt
+fmt:
+	go fmt ./...
+
 .PHONY: lint
 lint:
 	go vet ./...
