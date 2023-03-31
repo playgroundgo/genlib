@@ -66,7 +66,7 @@ func TestMergeFunc(t *testing.T) {
 	m1 := map[string]int{"a": 1, "b": 2}
 	m2 := map[string]int{"a": 11, "c": 3}
 	expected := map[string]int{"a": 12, "b": 2, "c": 3}
-	result := maps.MergeFunc(m1, m2, func(_ string, v1, v2 int) int {
+	result := maps.MergeBy(m1, m2, func(_ string, v1, v2 int) int {
 		return v1 + v2
 	})
 	if !reflect.DeepEqual(expected, result) {

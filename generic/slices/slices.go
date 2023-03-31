@@ -36,9 +36,9 @@ func Count[S ~[]T, T comparable](items S, item T) int {
 	return count
 }
 
-// CountFunc returns the number of elements in slice 'items' for which the function 'f' evaluates
+// CountBy returns the number of elements in slice 'items' for which the function 'f' evaluates
 // to true.
-func CountFunc[S ~[]T, T any](items S, f func(item T) bool) int {
+func CountBy[S ~[]T, T any](items S, f func(item T) bool) int {
 	count := 0
 	for _, item := range items {
 		if f(item) {

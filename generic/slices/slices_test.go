@@ -55,7 +55,7 @@ func TestCount(t *testing.T) {
 
 func TestCountFunc(t *testing.T) {
 	items := []int{1, 2, 3, 4, 5, 6, 7, 8, 10, 11}
-	count := slices.CountFunc(items, func(item int) bool {
+	count := slices.CountBy(items, func(item int) bool {
 		return item%2 == 0
 	})
 	if count != 5 {
