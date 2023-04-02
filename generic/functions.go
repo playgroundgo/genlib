@@ -24,8 +24,8 @@ func Compare[T constraints.Ordered](a, b T) int {
 	return 0
 }
 
-// CompareFunc compares the two arguments using the provided comparator function.
-func CompareFunc[T any](a, b T, less LessFn[T]) int {
+// CompareBy compares the two arguments using the provided comparator function.
+func CompareBy[T any](a, b T, less LessFn[T]) int {
 	if less(a, b) {
 		return -1
 	}
@@ -43,9 +43,9 @@ func Min[T constraints.Ordered](a, b T) T {
 	return b
 }
 
-// MinFunc compares the given arguments using the provided comparator function and returns the
+// MinBy compares the given arguments using the provided comparator function and returns the
 // smaller one.
-func MinFunc[T any](a, b T, less LessFn[T]) T {
+func MinBy[T any](a, b T, less LessFn[T]) T {
 	if less(a, b) {
 		return a
 	}
@@ -60,9 +60,9 @@ func Max[T constraints.Ordered](a, b T) T {
 	return b
 }
 
-// MaxFunc compares the given arguments using the provided comparator function and returns the
+// MaxBy compares the given arguments using the provided comparator function and returns the
 // largest one.
-func MaxFunc[T any](a, b T, less LessFn[T]) T {
+func MaxBy[T any](a, b T, less LessFn[T]) T {
 	if less(a, b) {
 		return b
 	}

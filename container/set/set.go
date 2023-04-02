@@ -1,6 +1,9 @@
 package set
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/playgroundgo/genlib/generic"
 )
 
@@ -38,6 +41,24 @@ func (s Set[T]) Equal(other Set[T]) bool {
 		}
 	}
 	return true
+}
+
+// String returns a string representation of the set.
+func (s Set[T]) String() string {
+	var sb strings.Builder
+	i := 0
+	size := len(s)
+	sb.WriteString("{")
+
+	for elem := range s {
+		sb.WriteString(fmt.Sprintf("%v", elem))
+		i++
+		if i < size {
+			sb.WriteString(", ")
+		}
+	}
+	sb.WriteString("}")
+	return sb.String()
 }
 
 // Clear clears the content of the set.
