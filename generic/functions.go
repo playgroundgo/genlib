@@ -13,7 +13,7 @@ func Less[T constraints.Ordered](a, b T) bool {
 	return a < b
 }
 
-// // Compare compares the two arguments.
+// Compare compares the two arguments.
 func Compare[T constraints.Ordered](a, b T) int {
 	if a < b {
 		return -1
