@@ -2,12 +2,6 @@ package generic
 
 import "golang.org/x/exp/constraints"
 
-// EqualsFn is a function type that checks if two arguments are equal.
-type EqualsFn[T any] func(a, b T) bool
-
-// LessFn is a function type that checks if the first argument is less than the second one.
-type LessFn[T any] func(a, b T) bool
-
 // Equals verifies if the arguments are equal using the equality operator.
 func Equals[T comparable](a, b T) bool {
 	return a == b
