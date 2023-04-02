@@ -1,14 +1,14 @@
-package sync_test
+package gsync_test
 
 import (
 	"bytes"
 	"testing"
 
-	"github.com/playgroundgo/genlib/sync"
+	"github.com/playgroundgo/genlib/gsync"
 )
 
 func TestPool(t *testing.T) {
-	bufPool := sync.NewPool(func() *bytes.Buffer {
+	bufPool := gsync.NewPool(func() *bytes.Buffer {
 		return &bytes.Buffer{}
 	})
 
