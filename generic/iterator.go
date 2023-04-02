@@ -9,7 +9,7 @@ type Iterator[T any] struct {
 	stopped atomic.Bool
 }
 
-// NewIterator creates a new iterator backed by a buffered channel with the given capacity.
+// NewBufferedIterator creates a new iterator backed by a buffered channel with the given capacity.
 // The client code is responsible for inserting elements in the iterator channel.
 func NewBufferedIterator[T any](bufSize int) (*Iterator[T], chan<- T) {
 	iterCh := make(chan T, bufSize)
