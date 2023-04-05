@@ -127,54 +127,6 @@ func TestSetCallbackIteration(t *testing.T) {
 	}
 }
 
-func TestSetIterators(t *testing.T) {
-	s := set.NewWithInitialSpace[int](4)
-
-	elems := make(map[int]struct{})
-	for i := 1; i <= 100; i++ {
-		elems[i] = struct{}{}
-	}
-
-	s.AddAll(maps.Keys(elems)...)
-	collected := make(map[int]struct{})
-
-	for elem := range s.Iterator().C {
-		collected[elem] = struct{}{}
-	}
-
-	if !maps.Equal(elems, collected) {
-		t.Fatalf("invalid elements added, expected %v, got %v", elems, collected)
-	}
-
-	maps.Clear(collected)
-
-	for elem := range s.BufferedIterator().C {
-		collected[elem] = struct{}{}
-	}
-
-	if !maps.Equal(elems, collected) {
-		t.Fatalf("invalid elements added, expected %v, got %v", elems, collected)
-	}
-
-	maps.Clear(collected)
-	iter := s.Iterator()
-	iter.Stop()
-
-	for elem := range iter.C {
-		collected[elem] = struct{}{}
-	}
-
-	iter.Stop()
-
-	if len(collected) > 0 {
-		t.Fatalf("didn't expected to have collected elements, got %v", collected)
-	}
-
-	if !iter.Stopped() {
-		t.Fatal("expected the iterator to be stopped")
-	}
-}
-
 func TestIntersect(t *testing.T) {
 	s1 := set.NewWithInitialSpace[int](4)
 	s2 := set.NewWithInitialSpace[int](4)

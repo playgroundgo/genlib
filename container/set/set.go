@@ -7,7 +7,7 @@ import (
 	"github.com/playgroundgo/genlib/generic"
 )
 
-// Set implements a set container.
+// Set implements a set container using the standard library map container.
 type Set[T comparable] map[T]struct{}
 
 // New creates a new set.
@@ -112,16 +112,6 @@ func (s Set[T]) ForEach(f func(elem T) bool) {
 	}
 }
 
-// Iterator returns an iterator over the set.
-func (s Set[T]) Iterator() *generic.Iterator[T] {
-	return s.iterate(generic.NewIterator[T]())
-}
-
-// Iterator returns a buffered iterator over the set.
-func (s Set[T]) BufferedIterator() *generic.Iterator[T] {
-	return s.iterate(generic.NewBufferedIterator[T](len(s)))
-}
-
 // Add adds an element to the set.
 func (s Set[T]) Add(elem T) {
 	s[elem] = struct{}{}
@@ -173,21 +163,6 @@ func (s Set[T]) ToSlice() []T {
 		elems = append(elems, elem)
 	}
 	return elems
-}
-
-func (s Set[T]) iterate(it *generic.Iterator[T], itCh chan<- T) *generic.Iterator[T] {
-	go func() {
-	L:
-		for elem := range s {
-			select {
-			case <-it.StopCh:
-				break L
-			case itCh <- elem:
-			}
-		}
-		close(itCh)
-	}()
-	return it
 }
 
 func intersect[T comparable](s1 Set[T], s2 Set[T]) Set[T] {
